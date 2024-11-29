@@ -24,8 +24,10 @@ export class PriceFeed {
     this.tickers.add(symbol)
   }
 
-  unsubscribeFromSymbol(symbol: string) {
+  async unsubscribeFromSymbol(symbol: string) {
     this.tickers.delete(symbol)
+    await timeout(3000)
+    this.generateTick(symbol)
   }
 
   listen(cb: CB) {
